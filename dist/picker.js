@@ -8,20 +8,25 @@
  * Date: 2019-02-18T13:08:12.801Z
  */
 
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Picker = factory());
-}(this, function () { 'use strict';
+(function(global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined'
+    ? (module.exports = factory())
+    : typeof define === 'function' && define.amd
+    ? define(factory)
+    : ((global = global || self), (global.Picker = factory()));
+})(this, function() {
+  'use strict';
 
   function _typeof(obj) {
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
+    if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') {
+      _typeof = function(obj) {
         return typeof obj;
       };
     } else {
-      _typeof = function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      _typeof = function(obj) {
+        return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype
+          ? 'symbol'
+          : typeof obj;
       };
     }
 
@@ -30,7 +35,7 @@
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      throw new TypeError('Cannot call a class as a function');
     }
   }
 
@@ -39,7 +44,7 @@
       var descriptor = props[i];
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
+      if ('value' in descriptor) descriptor.writable = true;
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
@@ -63,11 +68,12 @@
   }
 
   function _iterableToArray(iter) {
-    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === '[object Arguments]')
+      return Array.from(iter);
   }
 
   function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance");
+    throw new TypeError('Invalid attempt to spread non-iterable instance');
   }
 
   var DEFAULTS = {
@@ -88,7 +94,104 @@
     // Define the language. (An ISO language code).
     language: '',
     // Months' name.
-    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    months: [
+      '00:00',
+      '00:15',
+      '00:30',
+      '00:45',
+      '01:00',
+      '01:15',
+      '01:30',
+      '01:45',
+      '02:00',
+      '02:15',
+      '02:30',
+      '02:45',
+      '03:00',
+      '03:15',
+      '03:30',
+      '03:45',
+      '04:00',
+      '04:15',
+      '04:30',
+      '04:45',
+      '05:00',
+      '05:15',
+      '05:30',
+      '05:45',
+      '06:00',
+      '06:15',
+      '06:30',
+      '06:45',
+      '07:00',
+      '07:15',
+      '07:30',
+      '07:45',
+      '08:00',
+      '08:15',
+      '08:30',
+      '08:45',
+      '09:00',
+      '09:15',
+      '09:30',
+      '09:45',
+      '10:00',
+      '10:15',
+      '10:30',
+      '10:45',
+      '11:00',
+      '11:15',
+      '11:30',
+      '11:45',
+      '12:00',
+      '12:15',
+      '12:30',
+      '12:45',
+      '13:00',
+      '13:15',
+      '13:30',
+      '13:45',
+      '14:00',
+      '14:15',
+      '14:30',
+      '14:45',
+      '15:00',
+      '15:15',
+      '15:30',
+      '15:45',
+      '16:00',
+      '16:15',
+      '16:30',
+      '16:45',
+      '17:00',
+      '17:15',
+      '17:30',
+      '17:45',
+      '18:00',
+      '18:15',
+      '18:30',
+      '18:45',
+      '19:00',
+      '19:15',
+      '19:30',
+      '19:45',
+      '20:00',
+      '20:15',
+      '20:30',
+      '20:45',
+      '21:00',
+      '21:15',
+      '21:30',
+      '21:45',
+      '22:00',
+      '22:15',
+      '22:30',
+      '22:45',
+      '23:00',
+      '23:15',
+      '23:30',
+      '23:45',
+    ],
     // Shorter months' name.
     monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     // Define the number of rows for showing.
@@ -104,7 +207,7 @@
       hour: 'Hour',
       minute: 'Minute',
       second: 'Second',
-      millisecond: 'Millisecond'
+      millisecond: 'Millisecond',
     },
     // Translate date / time text.
     translate: function translate(type, text) {
@@ -115,10 +218,25 @@
     shown: null,
     hide: null,
     hidden: null,
-    pick: null
+    pick: null,
   };
 
-  var TEMPLATE = '<div class="picker" data-picker-action="hide" touch-action="none" tabindex="-1" role="dialog">' + '<div class="picker-dialog" role="document">' + '<div class="picker-header">' + '<h4 class="picker-title">{{ title }}</h4>' + '<button type="button" class="picker-close" data-picker-action="hide" aria-label="Close">&times;</button>' + '</div>' + '<div class="picker-body">' + '<div class="picker-grid"></div>' + '</div>' + '<div class="picker-footer">' + '<button type="button" class="picker-cancel" data-picker-action="hide">{{ cancel }}</button>' + '<button type="button" class="picker-confirm" data-picker-action="pick">{{ confirm }}</button>' + '</div>' + '</div>' + '</div>';
+  var TEMPLATE =
+    '<div class="picker" data-picker-action="hide" touch-action="none" tabindex="-1" role="dialog">' +
+    '<div class="picker-dialog" role="document">' +
+    '<div class="picker-header">' +
+    '<h4 class="picker-title">{{ title }}</h4>' +
+    '<button type="button" class="picker-close" data-picker-action="hide" aria-label="Close">&times;</button>' +
+    '</div>' +
+    '<div class="picker-body">' +
+    '<div class="picker-grid"></div>' +
+    '</div>' +
+    '<div class="picker-footer">' +
+    '<button type="button" class="picker-cancel" data-picker-action="hide">{{ cancel }}</button>' +
+    '<button type="button" class="picker-confirm" data-picker-action="pick">{{ confirm }}</button>' +
+    '</div>' +
+    '</div>' +
+    '</div>';
 
   var IS_BROWSER = typeof window !== 'undefined';
   var WINDOW = IS_BROWSER ? window : {};
@@ -132,12 +250,12 @@
   var ACTION_PICK = 'pick';
   var ACTION_PREV = 'prev'; // Classes
 
-  var CLASS_OPEN = "".concat(NAMESPACE, "-open");
-  var CLASS_OPENED = "".concat(NAMESPACE, "-opened");
-  var CLASS_PICKED = "".concat(NAMESPACE, "-picked"); // Data keys
+  var CLASS_OPEN = ''.concat(NAMESPACE, '-open');
+  var CLASS_OPENED = ''.concat(NAMESPACE, '-opened');
+  var CLASS_PICKED = ''.concat(NAMESPACE, '-picked'); // Data keys
   // Add namespace to avoid to conflict to some other libraries.
 
-  var DATA_ACTION = "".concat(NAMESPACE, "Action");
+  var DATA_ACTION = ''.concat(NAMESPACE, 'Action');
   var DATA_TOKEN = 'token';
   var DATA_TYPE = 'type';
   var DATA_NAME = 'name';
@@ -160,8 +278,8 @@
   var EVENT_WHEEL = 'wheel mousewheel DOMMouseScroll';
 
   var _Object$prototype = Object.prototype,
-      hasOwnProperty = _Object$prototype.hasOwnProperty,
-      toString = _Object$prototype.toString;
+    hasOwnProperty = _Object$prototype.hasOwnProperty,
+    toString = _Object$prototype.toString;
   /**
    * Detect the type of the given value.
    * @param {*} value - The value to detect.
@@ -169,7 +287,10 @@
    */
 
   function typeOf(value) {
-    return toString.call(value).slice(8, -1).toLowerCase();
+    return toString
+      .call(value)
+      .slice(8, -1)
+      .toLowerCase();
   }
   /**
    * Check if the given value is a string.
@@ -263,19 +384,21 @@
 
   function forEach(data, callback) {
     if (data && isFunction(callback)) {
-      if (Array.isArray(data) || isNumber(data.length)
-      /* array-like */
+      if (
+        Array.isArray(data) ||
+        isNumber(data.length)
+        /* array-like */
       ) {
-          var length = data.length;
-          var i;
+        var length = data.length;
+        var i;
 
-          for (i = 0; i < length; i += 1) {
-            if (callback.call(data, data[i], i, data) === false) {
-              break;
-            }
+        for (i = 0; i < length; i += 1) {
+          if (callback.call(data, data[i], i, data) === false) {
+            break;
           }
-        } else if (isObject(data)) {
-        Object.keys(data).forEach(function (key) {
+        }
+      } else if (isObject(data)) {
+        Object.keys(data).forEach(function(key) {
           callback.call(data, data[key], key, data);
         });
       }
@@ -296,9 +419,9 @@
     }
 
     if (isObject(target) && sources.length > 0) {
-      sources.forEach(function (source) {
+      sources.forEach(function(source) {
         if (isObject(source)) {
-          Object.keys(source).forEach(function (key) {
+          Object.keys(source).forEach(function(key) {
             if (isPlainObject(target[key]) && isPlainObject(source[key])) {
               target[key] = deepAssign({}, target[key], source[key]);
             } else {
@@ -323,7 +446,7 @@
     }
 
     if (isNumber(element.length)) {
-      forEach(element, function (elem) {
+      forEach(element, function(elem) {
         addClass(elem, value);
       });
       return;
@@ -339,7 +462,7 @@
     if (!className) {
       element.className = value;
     } else if (className.indexOf(value) < 0) {
-      element.className = "".concat(className, " ").concat(value);
+      element.className = ''.concat(className, ' ').concat(value);
     }
   }
   /**
@@ -354,7 +477,7 @@
     }
 
     if (isNumber(element.length)) {
-      forEach(element, function (elem) {
+      forEach(element, function(elem) {
         removeClass(elem, value);
       });
       return;
@@ -395,7 +518,7 @@
       return element.dataset[name];
     }
 
-    return element.getAttribute("data-".concat(hyphenate(name)));
+    return element.getAttribute('data-'.concat(hyphenate(name)));
   }
   /**
    * Set data to the given element.
@@ -410,7 +533,7 @@
     } else if (element.dataset) {
       element.dataset[name] = data;
     } else {
-      element.setAttribute("data-".concat(hyphenate(name)), data);
+      element.setAttribute('data-'.concat(hyphenate(name)), data);
     }
   }
   /**
@@ -434,12 +557,12 @@
         element.dataset[name] = undefined;
       }
     } else {
-      element.removeAttribute("data-".concat(hyphenate(name)));
+      element.removeAttribute('data-'.concat(hyphenate(name)));
     }
   }
   var REGEXP_SPACES = /\s\s*/;
 
-  var onceSupported = function () {
+  var onceSupported = (function() {
     var supported = false;
 
     if (IS_BROWSER) {
@@ -460,14 +583,14 @@
          */
         set: function set(value) {
           once = value;
-        }
+        },
       });
       WINDOW.addEventListener('test', listener, options);
       WINDOW.removeEventListener('test', listener, options);
     }
 
     return supported;
-  }();
+  })();
   /**
    * Remove event listener from the target element.
    * @param {Element} element - The event target.
@@ -476,30 +599,32 @@
    * @param {Object} options - The event options.
    */
 
-
   function removeListener(element, type, listener) {
     var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
     var handler = listener;
-    type.trim().split(REGEXP_SPACES).forEach(function (event) {
-      if (!onceSupported) {
-        var listeners = element.listeners;
+    type
+      .trim()
+      .split(REGEXP_SPACES)
+      .forEach(function(event) {
+        if (!onceSupported) {
+          var listeners = element.listeners;
 
-        if (listeners && listeners[event] && listeners[event][listener]) {
-          handler = listeners[event][listener];
-          delete listeners[event][listener];
+          if (listeners && listeners[event] && listeners[event][listener]) {
+            handler = listeners[event][listener];
+            delete listeners[event][listener];
 
-          if (Object.keys(listeners[event]).length === 0) {
-            delete listeners[event];
-          }
+            if (Object.keys(listeners[event]).length === 0) {
+              delete listeners[event];
+            }
 
-          if (Object.keys(listeners).length === 0) {
-            delete element.listeners;
+            if (Object.keys(listeners).length === 0) {
+              delete element.listeners;
+            }
           }
         }
-      }
 
-      element.removeEventListener(event, handler, options);
-    });
+        element.removeEventListener(event, handler, options);
+      });
   }
   /**
    * Add event listener to the target element.
@@ -512,36 +637,39 @@
   function addListener(element, type, listener) {
     var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
     var _handler = listener;
-    type.trim().split(REGEXP_SPACES).forEach(function (event) {
-      if (options.once && !onceSupported) {
-        var _element$listeners = element.listeners,
+    type
+      .trim()
+      .split(REGEXP_SPACES)
+      .forEach(function(event) {
+        if (options.once && !onceSupported) {
+          var _element$listeners = element.listeners,
             listeners = _element$listeners === void 0 ? {} : _element$listeners;
 
-        _handler = function handler() {
-          delete listeners[event][listener];
-          element.removeEventListener(event, _handler, options);
+          _handler = function handler() {
+            delete listeners[event][listener];
+            element.removeEventListener(event, _handler, options);
 
-          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-            args[_key2] = arguments[_key2];
+            for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+              args[_key2] = arguments[_key2];
+            }
+
+            listener.apply(element, args);
+          };
+
+          if (!listeners[event]) {
+            listeners[event] = {};
           }
 
-          listener.apply(element, args);
-        };
+          if (listeners[event][listener]) {
+            element.removeEventListener(event, listeners[event][listener], options);
+          }
 
-        if (!listeners[event]) {
-          listeners[event] = {};
+          listeners[event][listener] = _handler;
+          element.listeners = listeners;
         }
 
-        if (listeners[event][listener]) {
-          element.removeEventListener(event, listeners[event][listener], options);
-        }
-
-        listeners[event][listener] = _handler;
-        element.listeners = listeners;
-      }
-
-      element.addEventListener(event, _handler, options);
-    });
+        element.addEventListener(event, _handler, options);
+      });
   }
   /**
    * Dispatch event on the target element.
@@ -558,7 +686,7 @@
       event = new CustomEvent(type, {
         detail: data,
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       });
     } else {
       event = document.createEvent('CustomEvent');
@@ -574,7 +702,7 @@
    */
 
   function isLeapYear(year) {
-    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
   /**
    * Get days number of the given month.
@@ -624,7 +752,7 @@
       H: 'hour',
       m: 'minute',
       s: 'second',
-      S: 'millisecond'
+      S: 'millisecond',
     }[token.charAt(0)];
   }
   var REGEXP_TOKENS = /(Y|M|D|H|m|s|S)\1*/g;
@@ -641,14 +769,13 @@
       throw new Error('Invalid format.');
     } // Remove duplicate tokens (#22)
 
-
-    tokens = tokens.filter(function (token, index) {
+    tokens = tokens.filter(function(token, index) {
       return tokens.indexOf(token) === index;
     });
     var result = {
-      tokens: tokens
+      tokens: tokens,
     };
-    tokens.forEach(function (token) {
+    tokens.forEach(function(token) {
       result[tokenToType(token)] = token;
     });
     return result;
@@ -657,8 +784,8 @@
   var events = {
     bind: function bind() {
       var element = this.element,
-          options = this.options,
-          grid = this.grid;
+        options = this.options,
+        grid = this.grid;
 
       if (isFunction(options.show)) {
         addListener(element, EVENT_SHOW, options.show);
@@ -680,19 +807,19 @@
         addListener(element, EVENT_PICK, options.pick);
       }
 
-      addListener(element, EVENT_FOCUS, this.onFocus = this.focus.bind(this));
+      addListener(element, EVENT_FOCUS, (this.onFocus = this.focus.bind(this)));
       addListener(element, EVENT_CLICK, this.onFocus);
-      addListener(this.picker, EVENT_CLICK, this.onClick = this.click.bind(this));
-      addListener(grid, EVENT_WHEEL, this.onWheel = this.wheel.bind(this));
-      addListener(grid, EVENT_POINTER_DOWN, this.onPointerDown = this.pointerdown.bind(this));
-      addListener(document, EVENT_POINTER_MOVE, this.onPointerMove = this.pointermove.bind(this));
-      addListener(document, EVENT_POINTER_UP, this.onPointerUp = this.pointerup.bind(this));
-      addListener(document, EVENT_KEY_DOWN, this.onKeyDown = this.keydown.bind(this));
+      addListener(this.picker, EVENT_CLICK, (this.onClick = this.click.bind(this)));
+      addListener(grid, EVENT_WHEEL, (this.onWheel = this.wheel.bind(this)));
+      addListener(grid, EVENT_POINTER_DOWN, (this.onPointerDown = this.pointerdown.bind(this)));
+      addListener(document, EVENT_POINTER_MOVE, (this.onPointerMove = this.pointermove.bind(this)));
+      addListener(document, EVENT_POINTER_UP, (this.onPointerUp = this.pointerup.bind(this)));
+      addListener(document, EVENT_KEY_DOWN, (this.onKeyDown = this.keydown.bind(this)));
     },
     unbind: function unbind() {
       var element = this.element,
-          options = this.options,
-          grid = this.grid;
+        options = this.options,
+        grid = this.grid;
 
       if (isFunction(options.show)) {
         removeListener(element, EVENT_SHOW, options.show);
@@ -722,7 +849,7 @@
       removeListener(document, EVENT_POINTER_MOVE, this.onPointerMove);
       removeListener(document, EVENT_POINTER_UP, this.onPointerUp);
       removeListener(document, EVENT_KEY_DOWN, this.onKeyDown);
-    }
+    },
   };
 
   var handlers = {
@@ -779,14 +906,13 @@
         return;
       } // This line is required for preventing page scrolling in iOS browsers
 
-
       event.preventDefault();
 
       while (target.parentElement && target.parentElement !== this.grid) {
         target = target.parentElement;
       }
 
-      var list = target.querySelector(".".concat(NAMESPACE, "-list"));
+      var list = target.querySelector('.'.concat(NAMESPACE, '-list'));
       var itemHeight = list.firstElementChild.offsetHeight;
       this.cell = {
         elem: target,
@@ -795,7 +921,7 @@
         maxMoveY: itemHeight,
         minMoveY: itemHeight / 2,
         startY: event.changedTouches ? event.changedTouches[0].pageY : event.pageY,
-        type: getData(target, DATA_TYPE)
+        type: getData(target, DATA_TYPE),
       };
     },
     pointermove: function pointermove(event) {
@@ -812,7 +938,7 @@
       cell.moveY = moveY;
 
       if (Math.abs(moveY) < cell.maxMoveY) {
-        cell.list.style.top = "".concat(moveY, "px");
+        cell.list.style.top = ''.concat(moveY, 'px');
         return;
       }
 
@@ -847,7 +973,7 @@
       if (this.shown && (event.key === 'Escape' || event.keyCode === 27)) {
         this.hide();
       }
-    }
+    },
   };
 
   var helpers = {
@@ -855,7 +981,7 @@
       var _this = this;
 
       if (!type) {
-        this.format.tokens.forEach(function (token) {
+        this.format.tokens.forEach(function(token) {
           return _this.render(tokenToType(token));
         });
         return;
@@ -888,10 +1014,13 @@
           }
         }
 
-        item.textContent = options.translate(type, data.aliases ? data.aliases[newValue] : addLeadingZero(newValue + data.offset, data.digit));
+        item.textContent = options.translate(
+          type,
+          data.aliases ? data.aliases[newValue] : addLeadingZero(newValue + data.offset, data.digit)
+        );
         setData(item, DATA_NAME, type);
         setData(item, DATA_VALUE, newValue);
-        addClass(item, "".concat(NAMESPACE, "-item"));
+        addClass(item, ''.concat(NAMESPACE, '-item'));
 
         if (position === 0) {
           addClass(item, CLASS_PICKED);
@@ -924,8 +1053,10 @@
 
         case 'M':
           if (isNumber(value)) {
-            date.setMonth(value, // The current day should not exceed its maximum day in current month
-            Math.min(date.getDate(), getDaysInMonth(date.getFullYear(), value)));
+            date.setMonth(
+              value, // The current day should not exceed its maximum day in current month
+              Math.min(date.getDate(), getDaysInMonth(date.getFullYear(), value))
+            );
 
             if (format.day) {
               this.render(tokenToType(format.day));
@@ -990,13 +1121,13 @@
     open: function open() {
       var body = this.body;
       body.style.overflow = 'hidden';
-      body.style.paddingRight = "".concat(this.scrollBarWidth + (parseFloat(this.initialBodyPaddingRight) || 0), "px");
+      body.style.paddingRight = ''.concat(this.scrollBarWidth + (parseFloat(this.initialBodyPaddingRight) || 0), 'px');
     },
     close: function close() {
       var body = this.body;
       body.style.overflow = '';
       body.style.paddingRight = this.initialBodyPaddingRight;
-    }
+    },
   };
 
   var methods = {
@@ -1008,7 +1139,7 @@
     show: function show() {
       var immediate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var element = this.element,
-          picker = this.picker;
+        picker = this.picker;
 
       if (this.inline || this.shown) {
         return this;
@@ -1053,7 +1184,7 @@
 
       var immediate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var element = this.element,
-          picker = this.picker;
+        picker = this.picker;
 
       if (this.inline || !this.shown) {
         return this;
@@ -1102,7 +1233,10 @@
         value += max - min + 1;
       }
 
-      item.textContent = options.translate(type, data.aliases ? data.aliases[value] : addLeadingZero(value + data.offset, token.length));
+      item.textContent = options.translate(
+        type,
+        data.aliases ? data.aliases[value] : addLeadingZero(value + data.offset, token.length)
+      );
       setData(item, DATA_VALUE, value);
 
       if (prev) {
@@ -1142,7 +1276,10 @@
         value -= max - min + 1;
       }
 
-      item.textContent = options.translate(type, data.aliases ? data.aliases[value] : addLeadingZero(value + data.offset, token.length));
+      item.textContent = options.translate(
+        type,
+        data.aliases ? data.aliases[value] : addLeadingZero(value + data.offset, token.length)
+      );
       setData(item, DATA_VALUE, value);
       list.appendChild(item);
 
@@ -1225,7 +1362,7 @@
      */
     parseDate: function parseDate(date) {
       var options = this.options,
-          format = this.format;
+        format = this.format;
       var digits = [];
 
       if (isDate(date)) {
@@ -1234,10 +1371,10 @@
 
       if (isString(date)) {
         var groups = [].concat(_toConsumableArray(options.months), _toConsumableArray(options.monthsShort), ['\\d+']);
-        digits = date.match(new RegExp("(".concat(groups.join('|'), ")"), 'g')); // Parse `11111111` (YYYYMMDD) to ['1111', '11', '11']
+        digits = date.match(new RegExp('('.concat(groups.join('|'), ')'), 'g')); // Parse `11111111` (YYYYMMDD) to ['1111', '11', '11']
 
         if (digits && date.length === options.format.length && digits.length !== format.tokens.length) {
-          digits = format.tokens.map(function (token) {
+          digits = format.tokens.map(function(token) {
             return date.substr(options.format.indexOf(token), token.length);
           });
         }
@@ -1248,21 +1385,20 @@
       }
 
       var parsedDate = new Date();
-      digits.forEach(function (digit, i) {
+      digits.forEach(function(digit, i) {
         var token = format.tokens[i];
         var n = Number(digit);
 
         switch (token) {
           case 'YYYY':
           case 'YYY':
-          case 'Y':
-            {
-              var index = date.indexOf(digit);
-              var isHyphen = date.substr(index - 1, 1) === '-';
-              var isBC = index > 1 && isHyphen && /\S/.test(date.substr(index - 2, 1)) || index === 1 && isHyphen;
-              parsedDate.setFullYear(isBC ? -n : n);
-              break;
-            }
+          case 'Y': {
+            var index = date.indexOf(digit);
+            var isHyphen = date.substr(index - 1, 1) === '-';
+            var isBC = (index > 1 && isHyphen && /\S/.test(date.substr(index - 2, 1))) || (index === 1 && isHyphen);
+            parsedDate.setFullYear(isBC ? -n : n);
+            break;
+          }
 
           case 'YY':
             parsedDate.setFullYear(2000 + n);
@@ -1320,7 +1456,7 @@
      */
     formatDate: function formatDate(date) {
       var options = this.options,
-          format = this.format;
+        format = this.format;
       var formatted = '';
 
       if (isValidDate(date)) {
@@ -1332,7 +1468,7 @@
         var seconds = date.getSeconds();
         var milliseconds = date.getMilliseconds();
         formatted = options.format;
-        format.tokens.forEach(function (token) {
+        format.tokens.forEach(function(token) {
           var replacement = '';
 
           switch (token) {
@@ -1397,7 +1533,7 @@
     // Destroy the picker and remove the instance from the target element.
     destroy: function destroy() {
       var element = this.element,
-          picker = this.picker;
+        picker = this.picker;
 
       if (!getData(element, NAMESPACE)) {
         return this;
@@ -1408,7 +1544,7 @@
       removeData(element, NAMESPACE);
       picker.parentNode.removeChild(picker);
       return this;
-    }
+    },
   };
 
   var REGEXP_DELIMITER = /\{\{\s*(\w+)\s*\}\}/g;
@@ -1416,270 +1552,280 @@
   var AnotherPicker = WINDOW.Picker;
 
   var Picker =
-  /*#__PURE__*/
-  function () {
-    /**
-     * Create a new Picker.
-     * @param {Element} element - The target element for picking.
-     * @param {Object} [options={}] - The configuration options.
-     */
-    function Picker(element) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    /*#__PURE__*/
+    (function() {
+      /**
+       * Create a new Picker.
+       * @param {Element} element - The target element for picking.
+       * @param {Object} [options={}] - The configuration options.
+       */
+      function Picker(element) {
+        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      _classCallCheck(this, Picker);
+        _classCallCheck(this, Picker);
 
-      if (!element || element.nodeType !== 1) {
-        throw new Error('The first argument is required and must be an element.');
+        if (!element || element.nodeType !== 1) {
+          throw new Error('The first argument is required and must be an element.');
+        }
+
+        this.element = element;
+        this.options = deepAssign({}, DEFAULTS, LANGUAGES[options.language], isPlainObject(options) && options);
+        this.shown = false;
+        this.init();
       }
 
-      this.element = element;
-      this.options = deepAssign({}, DEFAULTS, LANGUAGES[options.language], isPlainObject(options) && options);
-      this.shown = false;
-      this.init();
-    }
+      _createClass(
+        Picker,
+        [
+          {
+            key: 'init',
+            value: function init() {
+              var _this = this;
 
-    _createClass(Picker, [{
-      key: "init",
-      value: function init() {
-        var _this = this;
+              var element = this.element;
 
-        var element = this.element;
-
-        if (getData(element, NAMESPACE)) {
-          return;
-        }
-
-        setData(element, NAMESPACE, this);
-        var options = this.options;
-        var isInput = REGEXP_INPUTS.test(element.tagName);
-        var inline = options.inline && (options.container || !isInput);
-        var template = document.createElement('div');
-        template.insertAdjacentHTML('afterbegin', TEMPLATE.replace(REGEXP_DELIMITER, function () {
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-          }
-
-          return options.text[args[1]];
-        }));
-        var picker = template.getElementsByClassName(NAMESPACE)[0];
-        var grid = picker.getElementsByClassName("".concat(NAMESPACE, "-grid"))[0];
-        var container = options.container;
-
-        if (isString(container)) {
-          container = document.querySelector(container);
-        }
-
-        if (inline) {
-          addClass(picker, CLASS_OPEN);
-          addClass(picker, CLASS_OPENED);
-
-          if (!container) {
-            container = element;
-          }
-        } else {
-          var ownerDocument = element.ownerDocument;
-          var body = ownerDocument.body || ownerDocument.documentElement;
-          this.body = body;
-          this.scrollBarWidth = WINDOW.innerWidth - ownerDocument.documentElement.clientWidth;
-          this.initialBodyPaddingRight = WINDOW.getComputedStyle(body).paddingRight;
-          addClass(picker, "".concat(NAMESPACE, "-fixed"));
-
-          if (!container) {
-            container = document.body;
-          }
-        }
-
-        this.isInput = isInput;
-        this.inline = inline;
-        this.container = container;
-        this.picker = picker;
-        this.grid = grid;
-        this.cell = null;
-        this.format = parseFormat(options.format);
-        var initialValue = this.getValue();
-        var date = this.parseDate(options.date || initialValue);
-        this.date = date;
-        this.initialDate = new Date(date);
-        this.initialValue = initialValue;
-        this.data = {};
-        var rows = Number(options.rows);
-
-        if (!(rows % 2)) {
-          rows += 1;
-        }
-
-        options.rows = rows || 5;
-        addClass(grid, "".concat(NAMESPACE, "-").concat(options.rows > 1 ? 'multiple' : 'single'));
-
-        if (options.controls) {
-          addClass(grid, "".concat(NAMESPACE, "-controls"));
-        }
-
-        var headers = options.headers,
-            increment = options.increment;
-
-        if (headers) {
-          addClass(grid, "".concat(NAMESPACE, "-headers")); // TODO: Drop the `headers` option's object support in v2.
-
-          headers = isPlainObject(headers) ? headers : options.text;
-        }
-
-        if (!isPlainObject(increment)) {
-          increment = {
-            year: increment,
-            month: increment,
-            day: increment,
-            hour: increment,
-            minute: increment,
-            second: increment,
-            millisecond: increment
-          };
-        }
-
-        this.format.tokens.forEach(function (token) {
-          var type = tokenToType(token);
-          var cell = document.createElement('div');
-          var cellBody = document.createElement('div');
-          var list = document.createElement('ul');
-          var data = {
-            digit: token.length,
-            increment: Math.abs(Number(increment[type])) || 1,
-            list: list,
-            max: Infinity,
-            min: -Infinity,
-            index: Math.floor((options.rows + 2) / 2),
-            offset: 0
-          };
-
-          switch (token.charAt(0)) {
-            case 'Y':
-              if (data.digit === 2) {
-                data.max = 99;
-                data.min = 0;
+              if (getData(element, NAMESPACE)) {
+                return;
               }
 
-              break;
+              setData(element, NAMESPACE, this);
+              var options = this.options;
+              var isInput = REGEXP_INPUTS.test(element.tagName);
+              var inline = options.inline && (options.container || !isInput);
+              var template = document.createElement('div');
+              template.insertAdjacentHTML(
+                'afterbegin',
+                TEMPLATE.replace(REGEXP_DELIMITER, function() {
+                  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                  }
 
-            case 'M':
-              data.max = 11;
-              data.min = 0;
-              data.offset = 1;
+                  return options.text[args[1]];
+                })
+              );
+              var picker = template.getElementsByClassName(NAMESPACE)[0];
+              var grid = picker.getElementsByClassName(''.concat(NAMESPACE, '-grid'))[0];
+              var container = options.container;
 
-              if (data.digit === 3) {
-                data.aliases = options.monthsShort;
-              } else if (data.digit === 4) {
-                data.aliases = options.months;
+              if (isString(container)) {
+                container = document.querySelector(container);
               }
 
-              break;
+              if (inline) {
+                addClass(picker, CLASS_OPEN);
+                addClass(picker, CLASS_OPENED);
 
-            case 'D':
-              // XXX: Use the latest date to calculate the max day (#23)
-              data.max = function () {
-                return getDaysInMonth(_this.date.getFullYear(), _this.date.getMonth());
-              };
+                if (!container) {
+                  container = element;
+                }
+              } else {
+                var ownerDocument = element.ownerDocument;
+                var body = ownerDocument.body || ownerDocument.documentElement;
+                this.body = body;
+                this.scrollBarWidth = WINDOW.innerWidth - ownerDocument.documentElement.clientWidth;
+                this.initialBodyPaddingRight = WINDOW.getComputedStyle(body).paddingRight;
+                addClass(picker, ''.concat(NAMESPACE, '-fixed'));
 
-              data.min = 1;
-              break;
+                if (!container) {
+                  container = document.body;
+                }
+              }
 
-            case 'H':
-              data.max = 23;
-              data.min = 0;
-              break;
+              this.isInput = isInput;
+              this.inline = inline;
+              this.container = container;
+              this.picker = picker;
+              this.grid = grid;
+              this.cell = null;
+              this.format = parseFormat(options.format);
+              var initialValue = this.getValue();
+              var date = this.parseDate(options.date || initialValue);
+              this.date = date;
+              this.initialDate = new Date(date);
+              this.initialValue = initialValue;
+              this.data = {};
+              var rows = Number(options.rows);
 
-            case 'm':
-              data.max = 59;
-              data.min = 0;
-              break;
+              if (!(rows % 2)) {
+                rows += 1;
+              }
 
-            case 's':
-              data.max = 59;
-              data.min = 0;
-              break;
+              options.rows = rows || 5;
+              addClass(grid, ''.concat(NAMESPACE, '-').concat(options.rows > 1 ? 'multiple' : 'single'));
 
-            case 'S':
-              data.max = 999;
-              data.min = 0;
-              break;
+              if (options.controls) {
+                addClass(grid, ''.concat(NAMESPACE, '-controls'));
+              }
 
-            default:
-          }
+              var headers = options.headers,
+                increment = options.increment;
 
-          setData(cell, DATA_TYPE, type);
-          setData(cell, DATA_TOKEN, token);
+              if (headers) {
+                addClass(grid, ''.concat(NAMESPACE, '-headers')); // TODO: Drop the `headers` option's object support in v2.
 
-          if (headers) {
-            var cellHeader = document.createElement('div');
-            addClass(cellHeader, "".concat(NAMESPACE, "-cell__header"));
-            cellHeader.textContent = headers[type] || type[0].toUpperCase() + type.substr(1);
-            cell.appendChild(cellHeader);
-          }
+                headers = isPlainObject(headers) ? headers : options.text;
+              }
 
-          if (options.controls) {
-            var prev = document.createElement('div');
-            addClass(prev, "".concat(NAMESPACE, "-cell__control"));
-            addClass(prev, "".concat(NAMESPACE, "-cell__control--prev"));
-            setData(prev, DATA_ACTION, ACTION_PREV);
-            cell.appendChild(prev);
-          }
+              if (!isPlainObject(increment)) {
+                increment = {
+                  year: increment,
+                  month: increment,
+                  day: increment,
+                  hour: increment,
+                  minute: increment,
+                  second: increment,
+                  millisecond: increment,
+                };
+              }
 
-          addClass(list, "".concat(NAMESPACE, "-list"));
-          addClass(cellBody, "".concat(NAMESPACE, "-cell__body"));
-          addClass(cell, "".concat(NAMESPACE, "-cell"));
-          addClass(cell, "".concat(NAMESPACE, "-").concat(type, "s"));
-          cellBody.appendChild(list);
-          cell.appendChild(cellBody);
+              this.format.tokens.forEach(function(token) {
+                var type = tokenToType(token);
+                var cell = document.createElement('div');
+                var cellBody = document.createElement('div');
+                var list = document.createElement('ul');
+                var data = {
+                  digit: token.length,
+                  increment: Math.abs(Number(increment[type])) || 1,
+                  list: list,
+                  max: Infinity,
+                  min: -Infinity,
+                  index: Math.floor((options.rows + 2) / 2),
+                  offset: 0,
+                };
 
-          if (options.controls) {
-            var next = document.createElement('div');
-            addClass(next, "".concat(NAMESPACE, "-cell__control"));
-            addClass(next, "".concat(NAMESPACE, "-cell__control--next"));
-            setData(next, DATA_ACTION, ACTION_NEXT);
-            cell.appendChild(next);
-          }
+                switch (token.charAt(0)) {
+                  case 'Y':
+                    if (data.digit === 2) {
+                      data.max = 99;
+                      data.min = 0;
+                    }
 
-          grid.appendChild(cell);
-          _this.data[type] = data;
+                    break;
 
-          _this.render(type);
-        });
+                  case 'M':
+                    data.max = 95;
+                    data.min = 0;
+                    data.offset = 1;
 
-        if (inline) {
-          container.innerHTML = '';
-        }
+                    if (data.digit === 3) {
+                      data.aliases = options.monthsShort;
+                    } else if (data.digit === 4) {
+                      data.aliases = options.months;
+                    }
 
-        container.appendChild(picker);
-        this.bind();
-      }
-      /**
-       * Get the no conflict picker class.
-       * @returns {Picker} The picker class.
-       */
+                    break;
 
-    }], [{
-      key: "noConflict",
-      value: function noConflict() {
-        WINDOW.Picker = AnotherPicker;
-        return Picker;
-      }
-      /**
-       * Change the default options.
-       * @param {Object} options - The new default options.
-       */
+                  case 'D':
+                    // XXX: Use the latest date to calculate the max day (#23)
+                    data.max = function() {
+                      return getDaysInMonth(_this.date.getFullYear(), _this.date.getMonth());
+                    };
 
-    }, {
-      key: "setDefaults",
-      value: function setDefaults(options) {
-        deepAssign(DEFAULTS, LANGUAGES[options.language], isPlainObject(options) && options);
-      }
-    }]);
+                    data.min = 1;
+                    break;
 
-    return Picker;
-  }();
+                  case 'H':
+                    data.max = 23;
+                    data.min = 0;
+                    break;
+
+                  case 'm':
+                    data.max = 59;
+                    data.min = 0;
+                    break;
+
+                  case 's':
+                    data.max = 59;
+                    data.min = 0;
+                    break;
+
+                  case 'S':
+                    data.max = 999;
+                    data.min = 0;
+                    break;
+
+                  default:
+                }
+
+                setData(cell, DATA_TYPE, type);
+                setData(cell, DATA_TOKEN, token);
+
+                if (headers) {
+                  var cellHeader = document.createElement('div');
+                  addClass(cellHeader, ''.concat(NAMESPACE, '-cell__header'));
+                  cellHeader.textContent = headers[type] || type[0].toUpperCase() + type.substr(1);
+                  cell.appendChild(cellHeader);
+                }
+
+                if (options.controls) {
+                  var prev = document.createElement('div');
+                  addClass(prev, ''.concat(NAMESPACE, '-cell__control'));
+                  addClass(prev, ''.concat(NAMESPACE, '-cell__control--prev'));
+                  setData(prev, DATA_ACTION, ACTION_PREV);
+                  cell.appendChild(prev);
+                }
+
+                addClass(list, ''.concat(NAMESPACE, '-list'));
+                addClass(cellBody, ''.concat(NAMESPACE, '-cell__body'));
+                addClass(cell, ''.concat(NAMESPACE, '-cell'));
+                addClass(cell, ''.concat(NAMESPACE, '-').concat(type, 's'));
+                cellBody.appendChild(list);
+                cell.appendChild(cellBody);
+
+                if (options.controls) {
+                  var next = document.createElement('div');
+                  addClass(next, ''.concat(NAMESPACE, '-cell__control'));
+                  addClass(next, ''.concat(NAMESPACE, '-cell__control--next'));
+                  setData(next, DATA_ACTION, ACTION_NEXT);
+                  cell.appendChild(next);
+                }
+
+                grid.appendChild(cell);
+                _this.data[type] = data;
+
+                _this.render(type);
+              });
+
+              if (inline) {
+                container.innerHTML = '';
+              }
+
+              container.appendChild(picker);
+              this.bind();
+            },
+            /**
+             * Get the no conflict picker class.
+             * @returns {Picker} The picker class.
+             */
+          },
+        ],
+        [
+          {
+            key: 'noConflict',
+            value: function noConflict() {
+              WINDOW.Picker = AnotherPicker;
+              return Picker;
+            },
+            /**
+             * Change the default options.
+             * @param {Object} options - The new default options.
+             */
+          },
+          {
+            key: 'setDefaults',
+            value: function setDefaults(options) {
+              deepAssign(DEFAULTS, LANGUAGES[options.language], isPlainObject(options) && options);
+            },
+          },
+        ]
+      );
+
+      return Picker;
+    })();
 
   deepAssign(Picker.prototype, events, handlers, helpers, methods);
   Picker.languages = LANGUAGES;
 
   return Picker;
+});
 
-}));
