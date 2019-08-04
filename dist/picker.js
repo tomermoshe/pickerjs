@@ -1063,7 +1063,7 @@
             }
           }
 
-          return date.getMonth();
+          return 0;
 
         case 'D':
           if (isNumber(value)) {
