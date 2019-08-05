@@ -1052,18 +1052,12 @@
           return date.getFullYear();
 
         case 'M':
-          if (isNumber(value)) {
-            date.setMonth(
-              value, // The current day should not exceed its maximum day in current month
-              Math.min(date.getDate(), getDaysInMonth(date.getFullYear(), value))
-            );
-
-            if (format.day) {
-              this.render(tokenToType(format.day));
-            }
+          const date = this.options.date;
+          if (!date) {
+            return 0;
+          } else {
+            return parseInt(this.options.date) / (1000 * 60 * 15);
           }
-
-          return 0;
 
         case 'D':
           if (isNumber(value)) {
