@@ -1243,7 +1243,7 @@
       data.current = Number(getData(data.item, DATA_VALUE));
       this.current(type, data.current);
 
-      if (this.inline && options.container) {
+      if (this.inline) {
         this.pick();
       }
 
